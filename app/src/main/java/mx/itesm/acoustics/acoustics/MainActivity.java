@@ -1,5 +1,8 @@
 package mx.itesm.acoustics.acoustics;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -10,7 +13,12 @@ import android.view.MenuItem;
 import android.view.WindowManager;
 
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends ActionBarActivity{
+    public static final String MyPREFERENCES = "MyPrefs" ;
+    public static final String name = "nameKey";
+    public static final String pass = "passwordKey";
+    public static SharedPreferences sharedpreferences;
+
     public static final ColorDrawable[] colorToRed = {new ColorDrawable(), new ColorDrawable(0xFFFF6F04)};
     public static final ColorDrawable[] colorToBlue = {new ColorDrawable(Color.BLUE), new ColorDrawable(Color.RED)};
     @Override
@@ -23,6 +31,7 @@ public class MainActivity extends ActionBarActivity {
                     .commit();
         }
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+
     }
 
     @Override
@@ -52,5 +61,19 @@ public class MainActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onResume() {
+        sharedpreferences=getSharedPreferences(MyPREFERENCES,
+                Context.MODE_PRIVATE);
+        if (sharedpreferences.contains(name))
+        {
+            if(sharedpreferences.contains(pass)){
+                Intent i = new Intent(this,mx.itesm.acoustics.acoustics.MainMenuActivity.class);
+                startActivity(i);
+            }
+        }
+        super.onResume();
     }
 }

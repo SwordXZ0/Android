@@ -1,21 +1,22 @@
 package mx.itesm.acoustics.acoustics;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ScrollView;
+import android.widget.Button;
+import android.widget.EditText;
 
 /**
  * A placeholder fragment containing a simple view.
  */
-public class LoginFragment extends Fragment {
+public class LoginFragment extends Fragment  {
     public LoginFragment() {
     }
-
-    ScrollView screen;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -30,5 +31,21 @@ public class LoginFragment extends Fragment {
             TransitionDrawable trans = new TransitionDrawable(MainActivity.colorToRed);
             frm.setBackgroundDrawable(trans);
             trans.startTransition(5000);*/
+        Button mButton = (Button) getActivity().findViewById(R.id.angry_btn);
+        mButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SharedPreferences.Editor editor = MainActivity.sharedpreferences.edit();
+                EditText e1=(EditText)getActivity().findViewById(R.id.editText);
+                EditText e2=(EditText)getActivity().findViewById(R.id.editText2);
+                String u = e1.getText().toString();
+                String p = e2.getText().toString();
+                editor.putString(MainActivity.name, u);
+                editor.putString(MainActivity.pass, p);
+                editor.commit();
+                Intent i = new Intent(getActivity(),MainMenuActivity.class);
+                startActivity(i);
+            }
+        });
     }
 }
