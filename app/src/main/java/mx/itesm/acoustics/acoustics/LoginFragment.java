@@ -1,10 +1,13 @@
 package mx.itesm.acoustics.acoustics;
 
+
+import android.app.AlertDialog;
+import android.app.Fragment;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +17,7 @@ import android.widget.EditText;
 /**
  * A placeholder fragment containing a simple view.
  */
-public class LoginFragment extends Fragment  {
+public class LoginFragment extends Fragment {
     public LoginFragment() {
     }
     @Override
@@ -40,11 +43,25 @@ public class LoginFragment extends Fragment  {
                 EditText e2=(EditText)getActivity().findViewById(R.id.editText2);
                 String u = e1.getText().toString();
                 String p = e2.getText().toString();
-                editor.putString(MainActivity.name, u);
-                editor.putString(MainActivity.pass, p);
-                editor.commit();
-                Intent i = new Intent(getActivity(),MainMenuActivity.class);
-                startActivity(i);
+                if(u.equals("Android")&& p.equals("Android")){
+                    editor.putString(MainActivity.name, u);
+                    editor.putString(MainActivity.pass, p);
+                    editor.commit();
+                    Intent i = new Intent(getActivity(),MainMenuActivity.class);
+                    startActivity(i);
+                }else{
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                    builder.setMessage("usuario o contraseña incorrecto")
+                            .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    // FIRE ZE MISSILES!
+                                }
+                            });
+                    AlertDialog d=builder.create();
+                    d.show();
+                    /*LoginDialogFragment d = new LoginDialogFragment();
+                    d.show(getActivity().getFragmentManager(),"mi_boton");*/
+                }
             }
         });
     }

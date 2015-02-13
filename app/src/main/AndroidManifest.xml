@@ -10,9 +10,10 @@
         <activity
             android:name=".SplashScreen"
             android:label="@string/app_name"
-            android:theme="@style/Splash">
+            android:theme="@style/Splash" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -23,6 +24,30 @@
         <activity
             android:name=".MainMenuActivity"
             android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name=".ListActivity"
+            android:label="Lista de terapias"
+            android:parentActivityName=".MainMenuActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="mx.itesm.acoustics.acoustics.MainMenuActivity" />
+        </activity>
+        <activity
+            android:name=".GraphActivity"
+            android:label="Analisis de datos"
+            android:parentActivityName=".ListActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="mx.itesm.acoustics.acoustics.ListActivity" />
+        </activity>
+        <activity
+            android:name=".RecordActivity"
+            android:label="Grabar nueva terapia"
+            android:parentActivityName=".MainMenuActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="mx.itesm.acoustics.acoustics.MainMenuActivity" />
         </activity>
     </application>
 

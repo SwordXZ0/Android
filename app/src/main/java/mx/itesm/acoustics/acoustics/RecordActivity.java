@@ -1,30 +1,29 @@
 package mx.itesm.acoustics.acoustics;
 
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
 
-public class MainMenuActivity extends ActionBarActivity{
+public class RecordActivity extends ActionBarActivity {
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_menu);
+        setContentView(R.layout.activity_record);
         if (savedInstanceState == null) {
-            getFragmentManager().beginTransaction().add(R.id.container2, new MainMenuFragment())
+            getFragmentManager().beginTransaction()
+                    .add(R.id.containerRecord, new recordFragment())
                     .commit();
         }
-
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main_menu, menu);
+        //getMenuInflater().inflate(R.menu.menu_record, menu);
         return true;
     }
 
@@ -39,26 +38,7 @@ public class MainMenuActivity extends ActionBarActivity{
         if (id == R.id.action_settings) {
             return true;
         }
-        if (id == R.id.action_Logout) {
-            logout();
-            return true;
-        }
 
         return super.onOptionsItemSelected(item);
     }
-
-    public void logout(){
-        SharedPreferences sharedpreferences = getSharedPreferences
-                (MainActivity.MyPREFERENCES, Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedpreferences.edit();
-        editor.clear();
-        editor.commit();
-        moveTaskToBack(true);
-        MainMenuActivity.this.finish();
-    }
-    public void exit(){
-        moveTaskToBack(true);
-        MainMenuActivity.this.finish();
-    }
-
 }

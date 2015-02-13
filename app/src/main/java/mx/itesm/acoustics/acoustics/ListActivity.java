@@ -8,23 +8,24 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 
-public class MainMenuActivity extends ActionBarActivity{
+public class ListActivity extends ActionBarActivity {
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_menu);
+        setContentView(R.layout.activity_list);
         if (savedInstanceState == null) {
-            getFragmentManager().beginTransaction().add(R.id.container2, new MainMenuFragment())
+            getFragmentManager().beginTransaction()
+                    .add(R.id.container3, new terapiasFragment())
                     .commit();
         }
-
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main_menu, menu);
+        //getMenuInflater().inflate(R.menu.menu_list, menu);
         return true;
     }
 
@@ -54,11 +55,7 @@ public class MainMenuActivity extends ActionBarActivity{
         editor.clear();
         editor.commit();
         moveTaskToBack(true);
-        MainMenuActivity.this.finish();
-    }
-    public void exit(){
-        moveTaskToBack(true);
-        MainMenuActivity.this.finish();
+        ListActivity.this.finish();
     }
 
 }
