@@ -1,6 +1,7 @@
 package mx.itesm.acoustics.acoustics;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -53,7 +54,8 @@ public class MainMenuActivity extends ActionBarActivity{
         SharedPreferences.Editor editor = sharedpreferences.edit();
         editor.clear();
         editor.commit();
-        moveTaskToBack(true);
+        Intent i = new Intent(this,mx.itesm.acoustics.acoustics.MainActivity.class);
+        startActivity(i);
         MainMenuActivity.this.finish();
     }
     public void exit(){

@@ -1,11 +1,7 @@
 package mx.itesm.acoustics.acoustics;
 
 
-import android.app.AlertDialog;
 import android.app.Fragment;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -34,34 +30,20 @@ public class LoginFragment extends Fragment {
             TransitionDrawable trans = new TransitionDrawable(MainActivity.colorToRed);
             frm.setBackgroundDrawable(trans);
             trans.startTransition(5000);*/
+        EditText e1=(EditText)getActivity().findViewById(R.id.editText);
+        EditText e2=(EditText)getActivity().findViewById(R.id.editText2);
+        e1.setText("");
+        e1.setText("");
         Button mButton = (Button) getActivity().findViewById(R.id.angry_btn);
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SharedPreferences.Editor editor = MainActivity.sharedpreferences.edit();
                 EditText e1=(EditText)getActivity().findViewById(R.id.editText);
                 EditText e2=(EditText)getActivity().findViewById(R.id.editText2);
                 String u = e1.getText().toString();
                 String p = e2.getText().toString();
-                if(u.equals("Android")&& p.equals("Android")){
-                    editor.putString(MainActivity.name, u);
-                    editor.putString(MainActivity.pass, p);
-                    editor.commit();
-                    Intent i = new Intent(getActivity(),MainMenuActivity.class);
-                    startActivity(i);
-                }else{
-                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                    builder.setMessage("usuario o contraseña incorrecto")
-                            .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int id) {
-                                    // FIRE ZE MISSILES!
-                                }
-                            });
-                    AlertDialog d=builder.create();
-                    d.show();
-                    /*LoginDialogFragment d = new LoginDialogFragment();
-                    d.show(getActivity().getFragmentManager(),"mi_boton");*/
-                }
+                LogInAsyncTask asycnTask = new LogInAsyncTask(getActivity(), u, p);
+                asycnTask.execute("http://ancestralstudios.com/emotiv/log.php");
             }
         });
     }
