@@ -1,7 +1,5 @@
 package mx.itesm.acoustics.acoustics;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
@@ -40,22 +38,7 @@ public class ListActivity extends ActionBarActivity {
         if (id == R.id.action_settings) {
             return true;
         }
-        if (id == R.id.action_Logout) {
-            logout();
-            return true;
-        }
 
         return super.onOptionsItemSelected(item);
     }
-
-    public void logout(){
-        SharedPreferences sharedpreferences = getSharedPreferences
-                (MainActivity.MyPREFERENCES, Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedpreferences.edit();
-        editor.clear();
-        editor.commit();
-        moveTaskToBack(true);
-        ListActivity.this.finish();
-    }
-
 }

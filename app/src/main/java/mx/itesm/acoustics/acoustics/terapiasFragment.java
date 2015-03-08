@@ -16,6 +16,28 @@ import java.util.ArrayList;
 
 public class terapiasFragment extends Fragment {
 
+    private ListView lista;
+    private ArrayAdapter<String> adapter;
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        lista = (ListView) getView().findViewById(R.id.list);
+        //adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, new ArrayList<String>());
+        adapter = new ArrayAdapter<String>(getActivity(), R.layout.terap,R.id.textView4, new ArrayList<String>());
+        lista.setAdapter(adapter);
+        lista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent i = new Intent(getActivity(),GraphActivity.class);
+                startActivity(i);
+            }
+        });
+
+        TerapiasAsyncTask asycnTask = new TerapiasAsyncTask (getActivity(),adapter);
+        asycnTask.execute("http://ancestralstudios.com/emotiv/terapias.php");
+    }
+
 
     public terapiasFragment() {
     }
@@ -23,33 +45,7 @@ public class terapiasFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_terapias, container, false);
-        ArrayList<String> terapias = new ArrayList<String>();
-        terapias.add("Terapia1");
-        terapias.add("Terapia2");
-        terapias.add("Terapia3");
-        terapias.add("Terapia4");
-        terapias.add("Terapia5");
-        terapias.add("Terapia6");
-        terapias.add("Terapia7");
-        terapias.add("Terapia8");
-        terapias.add("Terapia9");
-        terapias.add("Terapia10");
-        terapias.add("Terapia11");
-        terapias.add("Terapia12");
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_list_item_1,terapias);
-        ListView list = (ListView)view.findViewById(R.id.list);
-        list.setAdapter(adapter);
-        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                /*Toast.makeText(getActivity(),"hola", Toast.LENGTH_SHORT).show();
-                System.out.println("hola");*/
-                //getFragmentManager().beginTransaction().replace(R.id.container2, new GraphFragment()).commit();
-                Intent i = new Intent(getActivity(),GraphActivity.class);
-                startActivity(i);
-            }
-        });
+        View view = inflater.inflate(R.layout.fragment_terapias_list, container, false);
         return view;
     }
 }
