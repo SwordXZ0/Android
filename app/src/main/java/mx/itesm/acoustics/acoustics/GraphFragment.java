@@ -1,10 +1,12 @@
 package mx.itesm.acoustics.acoustics;
+
 import android.app.Fragment;
-import android.graphics.Typeface;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.data.ChartData;
@@ -12,8 +14,6 @@ import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.utils.ColorTemplate;
-import com.github.mikephil.charting.utils.Legend;
-import com.github.mikephil.charting.utils.YLabels;
 
 import java.util.ArrayList;
 
@@ -28,7 +28,35 @@ public class GraphFragment extends Fragment {
         // Required empty public constructor
     }
 
-    private LineChart mChart;
+    public  static LineChart mChart;
+    public static FrameLayout parent;
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        //mChart = (LineChart) getActivity().findViewById(R.id.lineChart);
+        mChart =new LineChart(getActivity());
+
+        mChart.setDescription("");
+        mChart.setDrawYValues(false);
+
+        mChart.setHighlightIndicatorEnabled(false);
+        mChart.setDrawBorder(false);
+        mChart.setDrawGridBackground(false);
+        mChart.setDrawVerticalGrid(true);
+        mChart.setDrawYValues(false);
+        mChart.setStartAtZero(false);
+        mChart.setGridColor(Color.BLACK);
+        mChart.animateX(3000);
+        mChart.setUnit(" Hrtz");
+        parent = (FrameLayout) getActivity().findViewById(R.id.graphsen);
+        String url="http://ancestralstudios.com/emotiv/fileTerapias.php?name="+getActivity().getIntent().getStringExtra("name")+"&sensor=1";
+        GraphLineAsycnTask  asycnTask = new GraphLineAsycnTask (getActivity());
+        asycnTask.execute(url);
+
+
+        //Typeface tf = Typeface.createFromAsset(getActivity().getAssets(),"arial.ttf");
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -36,7 +64,7 @@ public class GraphFragment extends Fragment {
 
         View v = inflater.inflate(R.layout.fragment_graph, container, false);
 
-        mChart = (LineChart) v.findViewById(R.id.lineChart);
+        /*mChart = (LineChart) v.findViewById(R.id.lineChart);
 
         mChart.setDescription("");
         mChart.setDrawYValues(false);
@@ -59,7 +87,7 @@ public class GraphFragment extends Fragment {
         l.setTypeface(tf);
 
         YLabels labels = mChart.getYLabels();
-        labels.setTypeface(tf);
+        labels.setTypeface(tf);*/
         return v;
 
     }

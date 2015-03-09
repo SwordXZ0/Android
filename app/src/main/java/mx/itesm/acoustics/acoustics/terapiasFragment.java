@@ -4,6 +4,7 @@ package mx.itesm.acoustics.acoustics;
 import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,7 +30,10 @@ public class terapiasFragment extends Fragment {
         lista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent i = new Intent(getActivity(),GraphActivity.class);
+                String tmp= adapter.getItem(position).trim();
+                String[] parts=tmp.split(" ");
+                tmp= parts[1].replace("\n", "").replace("\r", "");
+                Intent i = new Intent(getActivity(),GraphActivity.class).putExtra("name", tmp);
                 startActivity(i);
             }
         });
