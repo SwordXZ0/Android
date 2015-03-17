@@ -18,6 +18,9 @@ public class ServicioCambios extends Service {
     private final Handler handler= new Handler();
     private Intent intent;
 
+    private ServicioCambios s=this;
+
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -39,11 +42,16 @@ public class ServicioCambios extends Service {
         return START_STICKY;
     }
 
+
+
     private Runnable ejecutaAccion= new Runnable() {
         @Override
         public void run() {
-            mensajeActivity();
-            handler.postDelayed(this, 60000);
+            Thread t=MiThread.getThread(intent, handler, s);
+            if(t.getState()==Thread.State.NEW){
+                t.start();
+            }
+            //handler.postDelayed(this, 60000);
         }
     };
 
@@ -56,8 +64,10 @@ public class ServicioCambios extends Service {
         sendBroadcast(intent);
     }
 
+
     @Override
     public void onDestroy(){
+
         handler.removeCallbacks(ejecutaAccion);
         super.onDestroy();
     }

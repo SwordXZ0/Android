@@ -86,9 +86,12 @@ public class MainMenuActivity extends ActionBarActivity{
     };
 
     public void actualiza(Intent it){
-        /*TextView tv=(TextView)findViewById(R.id.textView);
+        //TextView tv=(TextView)findViewById(R.id.textView);
         String mensaje = it.getStringExtra("mensaje");
-        tv.setText(mensaje);*/
+        //tv.setText(mensaje);
+        /*if(mensaje.equals("true")){
+            lanzaNotificacion();
+        }*/
         lanzaNotificacion();
     }
 
