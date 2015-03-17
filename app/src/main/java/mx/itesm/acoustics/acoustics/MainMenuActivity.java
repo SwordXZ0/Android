@@ -1,15 +1,22 @@
 package mx.itesm.acoustics.acoustics;
 
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
 
 public class MainMenuActivity extends ActionBarActivity{
+    private Intent intent;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -18,6 +25,10 @@ public class MainMenuActivity extends ActionBarActivity{
             getFragmentManager().beginTransaction().add(R.id.container2, new MainMenuFragment())
                     .commit();
         }
+        intent=new Intent(this,ServicioCambios.class);
+        intent.putExtra("nombre", "prueba");
+        startService(intent);
+        registerReceiver(broadcastReceiver, new IntentFilter(ServicioCambios._ACTION));
 
     }
 
@@ -67,4 +78,44 @@ public class MainMenuActivity extends ActionBarActivity{
         MainMenuActivity.this.finish();
     }
 
+    private BroadcastReceiver broadcastReceiver= new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            actualiza(intent);
+        }
+    };
+
+    public void actualiza(Intent it){
+        /*TextView tv=(TextView)findViewById(R.id.textView);
+        String mensaje = it.getStringExtra("mensaje");
+        tv.setText(mensaje);*/
+        lanzaNotificacion();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unregisterReceiver(broadcastReceiver);
+        stopService(intent);
+    }
+
+    public void lanzaNotificacion(){
+        NotificationCompat.Builder mBuilder=new NotificationCompat.Builder(this);
+
+        mBuilder.setContentTitle(getString(R.string.app_name));
+        mBuilder.setContentText("Terapias modificadas");
+        mBuilder.setTicker("Terapias modificadas");
+        mBuilder.setSmallIcon(R.drawable.ic_launcher);
+        mBuilder.setAutoCancel(true);
+
+        Intent intento =new Intent(this, ListActivity.class);
+        //intento.putExtra("mensaje", new Date().toString());
+        PendingIntent resultPendingIntent= PendingIntent.getActivity(this, 500, intento, PendingIntent.FLAG_UPDATE_CURRENT);
+        mBuilder.setContentIntent(resultPendingIntent);
+
+        mBuilder.setDefaults(Notification.DEFAULT_ALL);
+
+        NotificationManager notificationManager= (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        notificationManager.notify(5007, mBuilder.build());
+    }
 }

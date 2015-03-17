@@ -60,6 +60,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="mx.itesm.acoustics.acoustics.GraphActivity" />
         </activity>
+        <service android:name=".ServicioCambios"/>
     </application>
 
 </manifest>
