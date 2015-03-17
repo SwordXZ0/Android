@@ -1,7 +1,11 @@
 package mx.itesm.acoustics.acoustics;
 
 import android.app.Fragment;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -24,6 +28,7 @@ public class GraphActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        PreferenceManager.setDefaultValues(this,R.xml.settings, false);
         setContentView(R.layout.activity_graph);
         /*if (savedInstanceState == null) {
             getFragmentManager().beginTransaction()
@@ -110,7 +115,7 @@ public class GraphActivity extends ActionBarActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        //getMenuInflater().inflate(R.menu.menu_graph, menu);
+        getMenuInflater().inflate(R.menu.menu_graph, menu);
         return true;
     }
 
@@ -119,8 +124,20 @@ public class GraphActivity extends ActionBarActivity {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+        if (id == R.id.action_settings) {
+            Intent i = new Intent(this,PrefrencesActivity.class);
+            startActivity(i);
+            return true;
+        }
 
-
+        if (id == R.id.action_refresh) {
+            SharedPreferences sharedpreferences=getSharedPreferences(MainActivity.MyPREFERENCES, Context.MODE_PRIVATE);
+            String url="http://ancestralstudios.com/emotiv/fileTerapias.php?name="+sharedpreferences.getString("fileName","")+"&sensor="+GraphFragment.sensor;
+            GraphLineAsycnTask  asycnTask = new GraphLineAsycnTask (this);
+            asycnTask.execute(url);
+            return true;
+        }
         //noinspection SimplifiableIfStatement
         if (toggle.onOptionsItemSelected(item)) {
             return true;

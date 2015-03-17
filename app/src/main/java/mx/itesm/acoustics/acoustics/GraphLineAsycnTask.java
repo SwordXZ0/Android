@@ -3,12 +3,12 @@ package mx.itesm.acoustics.acoustics;
 import android.accounts.NetworkErrorException;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.graphics.Color;
 import android.os.AsyncTask;
 
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
-import com.github.mikephil.charting.utils.ColorTemplate;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -66,9 +66,13 @@ public class GraphLineAsycnTask extends AsyncTask<String, Void, ArrayList<String
             count++;
         }
         ArrayList<LineDataSet> sets = new ArrayList<LineDataSet>();
-        LineDataSet ds1 = new LineDataSet(data, "Sensor()");
-        ds1.setColor(ColorTemplate.VORDIPLOM_COLORS[0]);
-        ds1.setCircleColor(ColorTemplate.VORDIPLOM_COLORS[0]);
+        LineDataSet ds1 = new LineDataSet(data, "Sensor "+GraphFragment.sensor);
+        //ds1.setColor(ColorTemplate.VORDIPLOM_COLORS[0]);
+        //ds1.setCircleColor(ColorTemplate.VORDIPLOM_COLORS[0]);
+
+        GraphFragment.colorline=GraphFragment.sharedPref.getString("prefs_color", "");
+        ds1.setColor(Color.parseColor(GraphFragment.colorline));
+        ds1.setCircleColor(Color.parseColor(GraphFragment.colorline));
         ds1.setLineWidth(2.5f);
         ds1.setCircleSize(3f);
         sets.add(ds1);
@@ -82,6 +86,7 @@ public class GraphLineAsycnTask extends AsyncTask<String, Void, ArrayList<String
         xlabels.add("Día 7");
         xlabels.add("Día 8");*/
         GraphFragment.mChart.setData(new LineData(xlabels, sets));
+        GraphFragment.parent.removeView(GraphFragment.mChart);
         GraphFragment.parent.addView(GraphFragment.mChart);
         processDialog.dismiss();
     }

@@ -22,4 +22,51 @@
         <item>Regresar</item>
     </string-array>
 
+    <string-array name="sensores">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+        <item>13</item>
+        <item>14</item>
+    </string-array>
+
+    <string-array name="coloresvals">
+        <item>#ff52e829</item>
+        <item>#ff26b3ff</item>
+        <item>#ff1a11ff</item>
+        <item>#ffff2ffa</item>
+        <item>#ffffba20</item>
+        <item>#fff4ff30</item>
+        <item>#ff9c1cff</item>
+        <item>#FF6F04</item>
+        <item>#ffff1a11</item>
+        <item>#ff000000</item>
+    </string-array>
+
+
+
+    <string-array name="colores">
+        <item>Verde</item>
+        <item>Cyan</item>
+        <item>Azul</item>
+        <item>Rosa</item>
+        <item>Naranja</item>
+        <item>Amarillo</item>
+        <item>Morado</item>
+        <item>Naranja Fuerte</item>
+        <item>Rojo</item>
+        <item>Negro</item>
+    </string-array>
+
+    <string name="title_activity_prefrences">PrefrencesActivity</string>
+
 </resources>

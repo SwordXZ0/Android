@@ -54,6 +54,10 @@ public class MainMenuActivity extends ActionBarActivity{
         SharedPreferences.Editor editor = sharedpreferences.edit();
         editor.clear();
         editor.commit();
+        /*SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor editor2 = sharedPref.edit();
+        editor2.clear();
+        editor2.commit();*/
         Intent i = new Intent(this,mx.itesm.acoustics.acoustics.MainActivity.class);
         startActivity(i);
         MainMenuActivity.this.finish();

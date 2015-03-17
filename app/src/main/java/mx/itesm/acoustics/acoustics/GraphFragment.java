@@ -1,8 +1,11 @@
 package mx.itesm.acoustics.acoustics;
 
 import android.app.Fragment;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,6 +33,9 @@ public class GraphFragment extends Fragment {
 
     public  static LineChart mChart;
     public static FrameLayout parent;
+    public static String sensor, colorline;
+
+    public static SharedPreferences sharedPref;
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
@@ -50,7 +56,22 @@ public class GraphFragment extends Fragment {
         mChart.animateX(3000);
         mChart.setUnit(" Hrtz");
         parent = (FrameLayout) getActivity().findViewById(R.id.graphsen);
-        String url="http://ancestralstudios.com/emotiv/fileTerapias.php?name="+getActivity().getIntent().getStringExtra("name")+"&sensor=1";
+
+        String fil;
+        SharedPreferences sharedpreferences=getActivity().getSharedPreferences(MainActivity.MyPREFERENCES, Context.MODE_PRIVATE);
+        if(getActivity().getIntent().getStringExtra("name")==null){
+                fil=sharedpreferences.getString("fileName","");
+        }else{
+            fil=getActivity().getIntent().getStringExtra("name");
+            SharedPreferences.Editor editor = sharedpreferences.edit();
+            editor.putString("fileName", fil);
+            editor.commit();
+        }
+
+        sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        sensor=sharedPref.getString("prefs_sensores", "");
+        colorline=sharedPref.getString("prefs_color", "");
+        String url="http://ancestralstudios.com/emotiv/fileTerapias.php?name="+fil+"&sensor="+sharedPref.getString("prefs_sensores", "");
         GraphLineAsycnTask  asycnTask = new GraphLineAsycnTask (getActivity());
         asycnTask.execute(url);
 
