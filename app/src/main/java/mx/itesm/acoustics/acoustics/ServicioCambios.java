@@ -4,9 +4,6 @@ import android.app.Service;
 import android.content.Intent;
 import android.os.Handler;
 import android.os.IBinder;
-import android.text.format.Time;
-
-import java.util.Calendar;
 
 /**
  * Created by sky on 16/03/2015.
@@ -54,15 +51,6 @@ public class ServicioCambios extends Service {
             //handler.postDelayed(this, 60000);
         }
     };
-
-    private void mensajeActivity(){
-        Calendar c = Calendar.getInstance();
-        int hour = c.get(Calendar.HOUR);
-        Time now = new Time();
-        now.setToNow();
-        intent.putExtra("mensaje", n + " : " + now);
-        sendBroadcast(intent);
-    }
 
 
     @Override
