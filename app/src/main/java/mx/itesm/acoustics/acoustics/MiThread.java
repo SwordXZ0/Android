@@ -1,7 +1,9 @@
 package mx.itesm.acoustics.acoustics;
 
 import android.accounts.NetworkErrorException;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Handler;
 import android.text.format.Time;
 
@@ -22,34 +24,37 @@ public class MiThread extends Thread{
     private static MiThread t;
 
     private Intent intent;
-    private Integer size;
-    private final Handler handler;
+    private String size;
+    private final Handler handler= new Handler();;
     ServicioCambios s;
 
-    private MiThread(Intent intent,Handler handler,ServicioCambios s){
+    public MiThread(Intent intent,ServicioCambios s){
         super();
         this.intent=intent;
-        this.handler=handler;
+        //this.handler=handler;
         this.s=s;
     }
 
-    public static MiThread getThread(Intent intent,Handler handler, ServicioCambios s){
+    public static MiThread getThread(Intent intent,ServicioCambios s){
         if(t==null){
-            t= new MiThread(intent,handler,s);
+            t= new MiThread(intent,s);
         }
         return t;
     }
 
     @Override
     public void run() {
-        mensajeActivity();
-        handler.postDelayed(this, 60000);
-        //leerArchivo("http://ancestralstudios.com/emotiv/terapias.php");
+        /*mensajeActivity();
+        handler.postDelayed(this, 60000);*/
+        leerArchivo("http://ancestralstudios.com/emotiv/terapias.php");
         //handler.postDelayed(this, 60000);
     }
 
     public void leerArchivo(String url)
     {
+        SharedPreferences sharedpreferences=s.getSharedPreferences("MyPrefs",
+                Context.MODE_PRIVATE);
+        size=sharedpreferences.getString("sizeT", null);
         StringBuilder responseString = new StringBuilder();
         HttpURLConnection connection = null;
         URL serviceURL = null;
@@ -84,17 +89,22 @@ public class MiThread extends Thread{
         try {
             JSONArray arreglo = new JSONArray(datos);
             if(size==null){
-                size= new Integer(arreglo.length());
-                intent.putExtra("mensaje", "false");
-                s.sendBroadcast(intent);
-            }else if (size.intValue()==arreglo.length()){
-                intent.putExtra("mensaje", "false");
-                s.sendBroadcast(intent);
+                SharedPreferences.Editor editor=sharedpreferences.edit();
+                editor.putString("sizeT",String.valueOf(arreglo.length()));
+                editor.commit();
+            }else if (size.equals(String.valueOf(arreglo.length()))){
             }else{
-                size= new Integer(arreglo.length());
+                SharedPreferences.Editor editor=sharedpreferences.edit();
+                editor.putString("sizeT",String.valueOf(arreglo.length()));
+                editor.commit();
                 intent.putExtra("mensaje", "true");
                 s.sendBroadcast(intent);
             }
+            /*JSONArray arreglo = new JSONArray(datos);
+            Integer i=arreglo.length();
+            Log.v("tam",i.toString());
+            intent.putExtra("mensaje", "true");
+            s.sendBroadcast(intent);*/
         }catch (Exception ex ){
             ex.printStackTrace();
         }

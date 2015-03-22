@@ -2,13 +2,13 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
     <ListPreference
         android:key="prefs_sensores"
-        android:title="Sensor a graficar"
+        android:title="@string/graphSensor"
         android:entries="@array/sensores"
         android:entryValues="@array/sensores"
         android:defaultValue="1"/>
     <ListPreference
         android:key="prefs_color"
-        android:title="Color de la grafica"
+        android:title="@string/graphColor"
         android:entries="@array/colores"
         android:entryValues="@array/coloresvals"
         android:defaultValue="#ff1a11ff"/>

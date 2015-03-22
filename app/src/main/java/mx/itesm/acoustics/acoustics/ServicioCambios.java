@@ -18,6 +18,8 @@ public class ServicioCambios extends Service {
     private ServicioCambios s=this;
 
 
+
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -32,9 +34,14 @@ public class ServicioCambios extends Service {
     String n ="";
     @Override
     public int onStartCommand(Intent intent, int flags, int startId){
-        n=intent.getStringExtra("nombre");
+        //n=intent.getStringExtra("nombre");
         handler.removeCallbacks(ejecutaAccion);
         handler.postDelayed(ejecutaAccion, 1000);
+
+        /*t=MiThread.getThread(intent,s);
+        if(t.getState()==Thread.State.NEW){
+            t.start();
+        }*/
 
         return START_STICKY;
     }
@@ -44,11 +51,13 @@ public class ServicioCambios extends Service {
     private Runnable ejecutaAccion= new Runnable() {
         @Override
         public void run() {
-            Thread t=MiThread.getThread(intent, handler, s);
+            MiThread thread= new MiThread(intent, s);
+            thread.start();
+            /*Thread t=MiThread.getThread(intent, s);
             if(t.getState()==Thread.State.NEW){
                 t.start();
-            }
-            //handler.postDelayed(this, 60000);
+            }*/
+            handler.postDelayed(ejecutaAccion, 60000);
         }
     };
 
@@ -57,6 +66,7 @@ public class ServicioCambios extends Service {
     public void onDestroy(){
 
         handler.removeCallbacks(ejecutaAccion);
+        //t.interrupt();
         super.onDestroy();
     }
 

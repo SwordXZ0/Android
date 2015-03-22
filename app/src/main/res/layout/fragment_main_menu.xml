@@ -28,7 +28,7 @@
                 <Button
                     android:layout_marginTop="15dp"
                     android:id="@+id/grabar"
-                    android:text="Grabar nueva terapia"
+                    android:text="@string/analizar"
                     android:textColor="#fff4ff13"
                     android:textSize="20sp"
                     android:layout_width="170dp"
@@ -38,7 +38,7 @@
                 <Button
                     android:layout_marginTop="15dp"
                     android:id="@+id/analizar"
-                    android:text="Analizar terapias anteriores"
+                    android:text="@string/action_logout"
                     android:textColor="#fff4ff13"
                     android:textSize="20sp"
                     android:layout_width="170dp"

@@ -34,7 +34,7 @@ public class TerapiasAsyncTask extends AsyncTask<String, Void, ArrayList<String>
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
-        processDialog.setTitle("Procesando...");
+        processDialog.setTitle(context.getResources().getString(R.string.procesing));
         processDialog.setCancelable(false);
         processDialog.show();
     }
@@ -103,7 +103,7 @@ public class TerapiasAsyncTask extends AsyncTask<String, Void, ArrayList<String>
             JSONArray arreglo = new JSONArray(datos);
             for(int i = 0; i < arreglo.length(); i++){
                 JSONObject s = arreglo.getJSONObject(i);
-                objetos.add("  Nombre: "+s.getString("nombre")+"\n  Fecha: "+s.getString("fecha"));
+                objetos.add("  "+context.getResources().getString(R.string.namefile)+" "+s.getString("nombre")+"\n  "+context.getResources().getString(R.string.date)+" "+s.getString("fecha"));
             }
         }catch (Exception ex ){
             ex.printStackTrace();

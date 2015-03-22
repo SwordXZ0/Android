@@ -30,7 +30,7 @@
         </activity>
         <activity
             android:name=".ListActivity"
-            android:label="Lista de terapias"
+            android:label="@string/title_activity_list"
             android:parentActivityName=".MainMenuActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -38,7 +38,7 @@
         </activity>
         <activity
             android:name=".GraphActivity"
-            android:label="Analisis de datos"
+            android:label="@string/title_activity_graph"
             android:parentActivityName=".ListActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -54,7 +54,7 @@
         </activity>
         <activity
             android:name=".PrefrencesActivity"
-            android:label="Preferencias"
+            android:label="@string/title_activity_prefrences"
             android:parentActivityName=".GraphActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

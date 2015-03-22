@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="action_settings">Settings</string>
+    <string name="action_update">Update</string>
+    <string name="analizar">Analyze\nTherapies</string>
+    <string name="action_logout">Close\nSession</string>
+    <string name="mail">e-mail</string>
+    <string name="password">password</string>
+    <string name="ingresar">Sign In</string>
+
+    <string name="title_activity_list">List of Therapies</string>
+    <string name="title_activity_graph">Data Analysis</string>
+    <string name="loginMessage">Incorrect username or password</string>
+    <string name="procesing">Processing...</string>
+
+    <string name="abrir">Open</string>
+    <string name="cerrar">Close</string>
+    <string name="namefile">Name:</string>
+    <string name="date">Date:</string>
+    <string name="graphSensor">Graph sensor</string>
+    <string name="graphColor">Graph color</string>
+    <string name="coeficiente">Coefficient: 1.24</string>
+    <string name="paciente">The patient was stressed</string>
+
+    <string-array name="opciones">
+        <item>Graph</item>
+        <item>Data</item>
+        <item>Back</item>
+    </string-array>
+
+    <string-array name="colores">
+        <item>Green</item>
+        <item>Cyan</item>
+        <item>Blue</item>
+        <item>Pink</item>
+        <item>Orange</item>
+        <item>Yellow</item>
+        <item>Purple</item>
+        <item>Strong Orange</item>
+        <item>Red</item>
+        <item>Black</item>
+    </string-array>
+
+    <string name="title_activity_prefrences">Settings</string>
+    <string name="NotifyTerapies">Modified Therapies</string>
+
+</resources>

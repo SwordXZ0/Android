@@ -44,7 +44,7 @@ public class LogInAsyncTask extends AsyncTask<String, Void, ArrayList<String>> {
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
-        processDialog.setTitle("Procesando...");
+        processDialog.setTitle(context.getResources().getString(R.string.procesing));
         processDialog.setCancelable(false);
         processDialog.show();
     }
@@ -72,7 +72,7 @@ public class LogInAsyncTask extends AsyncTask<String, Void, ArrayList<String>> {
             context.startActivity(i);
         }else{
             AlertDialog.Builder builder = new AlertDialog.Builder(context);
-            builder.setMessage("usuario o contraseña incorrecto")
+            builder.setMessage(R.string.loginMessage)
                     .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
 

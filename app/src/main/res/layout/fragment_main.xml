@@ -62,7 +62,7 @@
             <Button
                 android:layout_marginTop="15dp"
                 android:id="@+id/angry_btn"
-                android:text="Ingresar"
+                android:text="@string/ingresar"
                 android:textColor="#fff4ff13"
                 android:textSize="20sp"
                 android:layout_width="170dp"

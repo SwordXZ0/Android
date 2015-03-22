@@ -1,23 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Acoustics</string>
-    <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
-    <string name="action_logout">Log out</string>
-    <string name="mail">e-mail</string>
-    <string name="password">password</string>
-    <string name="title_activity_main_menu">MainMenuActivity</string>
-    <string name="title_activity_splash_screen">SplashScreen</string>
-    <string name="title_activity_list">ListActivity</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="title_activity_graph">GraphActivity</string>
-    <string name="title_activity_record">RecordActivity</string>
+    <string name="app_name" translatable="false">Acoustics</string>
+    <string name="hello_world" translatable="false">Hello world!</string>
+
+    <string name="action_settings">Configuracion</string>
+    <string name="action_update">Actualizar</string>
+    <string name="analizar">Analizar\nTerapias</string>
+    <string name="action_logout">Cerrar\nSesión</string>
+    <string name="mail">Correo Electrónico</string>
+    <string name="password">Contraseña</string>
+    <string name="ingresar">Ingresar</string>
+
+    <string name="title_activity_main_menu" translatable="false">MainMenuActivity</string>
+    <string name="title_activity_splash_screen" translatable="false">SplashScreen</string>
+    <string name="title_activity_list">Lista de Terapias</string>
+    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
+    <string name="title_activity_graph">Análisis de Datos</string>
+    <string name="loginMessage">Usuario o Contraseña incorrecto</string>
+    <string name="procesing">Procesando...</string>
+    <string name="title_activity_record" translatable="false">RecordActivity</string>
     <string name="abrir">Abrir</string>
     <string name="cerrar">Cerrar</string>
+    <string name="namefile">Nombre:</string>
+    <string name="date">Fecha:</string>
+    <string name="graphSensor">Sensor a graficar</string>
+    <string name="graphColor">Color de la gráfica</string>
+    <string name="coeficiente">Coeficiente: 1.24</string>
+    <string name="paciente">El paciente estaba estresado</string>
 
     <string-array name="opciones">
-        <item>Grafica</item>
+        <item>Gráfica</item>
         <item>Datos</item>
         <item>Regresar</item>
     </string-array>
@@ -67,6 +80,7 @@
         <item>Negro</item>
     </string-array>
 
-    <string name="title_activity_prefrences">PrefrencesActivity</string>
+    <string name="title_activity_prefrences">Preferencias</string>
+    <string name="NotifyTerapies">Terapias modificadas</string>
 
 </resources>

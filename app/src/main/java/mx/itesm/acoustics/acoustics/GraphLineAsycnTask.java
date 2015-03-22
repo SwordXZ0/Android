@@ -40,7 +40,7 @@ public class GraphLineAsycnTask extends AsyncTask<String, Void, ArrayList<String
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
-        processDialog.setTitle("Procesando...");
+        processDialog.setTitle(context.getResources().getString(R.string.procesing));
         processDialog.setCancelable(false);
         processDialog.show();
     }
