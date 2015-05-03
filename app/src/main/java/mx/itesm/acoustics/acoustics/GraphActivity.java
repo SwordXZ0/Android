@@ -30,11 +30,6 @@ public class GraphActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         PreferenceManager.setDefaultValues(this,R.xml.settings, false);
         setContentView(R.layout.activity_graph);
-        /*if (savedInstanceState == null) {
-            getFragmentManager().beginTransaction()
-                    .add(R.id.containerGraph, new GraphFragment())
-                    .commit();
-        }*/
         titulo=tituloDrawer=getTitle();
         itemsTitulos=getResources().getStringArray(R.array.opciones);
         drawerLayout=(DrawerLayout)findViewById(R.id.drawer_layout);
@@ -115,16 +110,12 @@ public class GraphActivity extends ActionBarActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_graph, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
         if (id == R.id.action_settings) {
             Intent i = new Intent(this,PrefrencesActivity.class);
@@ -140,7 +131,6 @@ public class GraphActivity extends ActionBarActivity {
             asycnTask.execute(url);
             return true;
         }
-        //noinspection SimplifiableIfStatement
         if (toggle.onOptionsItemSelected(item)) {
             return true;
         }

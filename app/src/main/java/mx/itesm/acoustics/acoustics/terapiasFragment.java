@@ -13,9 +13,7 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 
-
 public class terapiasFragment extends Fragment {
-
     private ListView lista;
     private ArrayAdapter<String> adapter;
 
@@ -23,7 +21,6 @@ public class terapiasFragment extends Fragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         lista = (ListView) getView().findViewById(R.id.list);
-        //adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, new ArrayList<String>());
         adapter = new ArrayAdapter<String>(getActivity(), R.layout.terap,R.id.textView4, new ArrayList<String>());
         lista.setAdapter(adapter);
         lista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -41,7 +38,6 @@ public class terapiasFragment extends Fragment {
         TerapiasAsyncTask asycnTask = new TerapiasAsyncTask (getActivity(),adapter);
         asycnTask.execute("http://ancestralstudios.com/emotiv/terapias.php");
     }
-
 
     public terapiasFragment() {
     }

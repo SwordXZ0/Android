@@ -18,20 +18,11 @@ import com.jjoe64.graphview.series.LineGraphSeries;
  * A simple {@link Fragment} subclass.
  */
 public class recordFragment extends Fragment {
-
-    public static LineGraphSeries<DataPoint> series;
-
-
-
     public recordFragment() {
-        // Required empty public constructor
     }
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_record, container, false);
     }
 
@@ -47,12 +38,9 @@ public class recordFragment extends Fragment {
                 new DataPoint(4, 6)
         });
         graph.addSeries(series);
-        // set manual X bounds
         graph.getViewport().setXAxisBoundsManual(true);
         graph.getViewport().setMinX(0);
         graph.getViewport().setMaxX(4);
-
-        // set manual Y bounds
         graph.getViewport().setYAxisBoundsManual(true);
         graph.getViewport().setMinY(0);
         graph.getViewport().setMaxY(8);
@@ -68,8 +56,5 @@ public class recordFragment extends Fragment {
 
         graph.getViewport().setScalable(true);
         graph.getViewport().setScrollable(true);
-
     }
-
-
 }

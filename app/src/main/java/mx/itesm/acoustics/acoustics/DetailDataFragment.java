@@ -16,19 +16,14 @@ import android.widget.TextView;
  * A simple {@link Fragment} subclass.
  */
 public class DetailDataFragment extends Fragment {
-    public static String sensor;
     public static SharedPreferences sharedPref;
 
     public DetailDataFragment() {
-
-        // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_detail_data, container, false);
     }
 

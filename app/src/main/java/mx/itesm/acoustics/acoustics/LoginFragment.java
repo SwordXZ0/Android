@@ -26,14 +26,10 @@ public class LoginFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-            /*ScrollView frm = (ScrollView)getActivity().findViewById(R.id.intro);
-            TransitionDrawable trans = new TransitionDrawable(MainActivity.colorToRed);
-            frm.setBackgroundDrawable(trans);
-            trans.startTransition(5000);*/
         EditText e1=(EditText)getActivity().findViewById(R.id.editText);
         EditText e2=(EditText)getActivity().findViewById(R.id.editText2);
         e1.setText("");
-        e1.setText("");
+        e2.setText("");
         Button mButton = (Button) getActivity().findViewById(R.id.angry_btn);
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override

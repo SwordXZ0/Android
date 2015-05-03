@@ -68,31 +68,17 @@ public class GraphLineAsycnTask extends AsyncTask<String, Void, ArrayList<String
         ArrayList<LineDataSet> sets = new ArrayList<LineDataSet>();
         String[] sNames= context.getResources().getStringArray(R.array.sensoresNames);
         LineDataSet ds1 = new LineDataSet(data, "Sensor "+sNames[Integer.parseInt(GraphFragment.sensor)-1]);
-        //ds1.setColor(ColorTemplate.VORDIPLOM_COLORS[0]);
-        //ds1.setCircleColor(ColorTemplate.VORDIPLOM_COLORS[0]);
-
         GraphFragment.colorline=GraphFragment.sharedPref.getString("prefs_color", "");
         ds1.setColor(Color.parseColor(GraphFragment.colorline));
         ds1.setCircleColor(Color.parseColor(GraphFragment.colorline));
         ds1.setLineWidth(2.5f);
         ds1.setCircleSize(3f);
         sets.add(ds1);
-        /*ArrayList<String> xlabels= new ArrayList<String>();
-        xlabels.add("Día 1");
-        xlabels.add("Día 2");
-        xlabels.add("Día 3");
-        xlabels.add("Día 4");
-        xlabels.add("Día 5");
-        xlabels.add("Día 6");
-        xlabels.add("Día 7");
-        xlabels.add("Día 8");*/
         GraphFragment.mChart.setData(new LineData(xlabels, sets));
         GraphFragment.parent.removeView(GraphFragment.mChart);
         GraphFragment.parent.addView(GraphFragment.mChart);
         processDialog.dismiss();
     }
-
-
 
     public String leerArchivo(String url)
     {
@@ -133,10 +119,7 @@ public class GraphLineAsycnTask extends AsyncTask<String, Void, ArrayList<String
         ArrayList<String> objetos = new ArrayList<String>();
         xlabels= new ArrayList<String>();
         try {
-            //JSONObject ob = new JSONObject(datos);
-            //JSONObject ob2 = ob.getJSONObject("daily");
             JSONArray arreglo = new JSONArray(datos);
-            //JSONArray arreglo = ob.getJSONArray("results");
             for(int i = 0; i < arreglo.length(); i++){
                 JSONObject s = arreglo.getJSONObject(i);
                 xlabels.add(s.getString("time")+" sec");
@@ -145,7 +128,6 @@ public class GraphLineAsycnTask extends AsyncTask<String, Void, ArrayList<String
         }catch (Exception ex ){
             ex.printStackTrace();
         }
-
         return objetos;
     }
 }

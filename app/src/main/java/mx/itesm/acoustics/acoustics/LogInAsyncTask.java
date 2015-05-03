@@ -100,17 +100,11 @@ public class LogInAsyncTask extends AsyncTask<String, Void, ArrayList<String>> {
             HttpEntity httpEntity = httpResponse.getEntity();
             InputStream is = httpEntity.getContent();
 
-
-            BufferedReader in =
-                    new BufferedReader(
-
-                            new InputStreamReader(is, "UTF-8"));
+            BufferedReader in = new BufferedReader(new InputStreamReader(is, "UTF-8"));
             String str;
-
             while ((str = in.readLine()) != null) {
                 buf.append(str);
             }
-
             in.close();
         }catch (Exception ex ){
             ex.printStackTrace();

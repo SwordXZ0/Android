@@ -19,12 +19,9 @@ import java.util.ArrayList;
  * Created by genome on 2/6/15.
  */
 public class TerapiasAsyncTask extends AsyncTask<String, Void, ArrayList<String>> {
-
     private ArrayAdapter<String> adaptador;
     private Context context;
-
     private ProgressDialog processDialog;
-
     public TerapiasAsyncTask(Context c , ArrayAdapter<String> d){
         context = c;
         adaptador = d;
@@ -39,15 +36,12 @@ public class TerapiasAsyncTask extends AsyncTask<String, Void, ArrayList<String>
         processDialog.show();
     }
 
-
     @Override
     protected ArrayList<String> doInBackground(String... params) {
         ArrayList<String> arreglo = new  ArrayList<String>();
         arreglo= procesaJSON(leerArchivo(params[0]));
         return arreglo;
     }
-
-
 
     @Override
     protected void onPostExecute(ArrayList<String> strings) {
@@ -59,8 +53,6 @@ public class TerapiasAsyncTask extends AsyncTask<String, Void, ArrayList<String>
         adaptador.notifyDataSetChanged();
         processDialog.dismiss();
     }
-
-
 
     public String leerArchivo(String url)
     {
