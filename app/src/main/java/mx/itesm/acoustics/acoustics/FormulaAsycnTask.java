@@ -3,12 +3,8 @@ package mx.itesm.acoustics.acoustics;
 import android.accounts.NetworkErrorException;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.graphics.Color;
 import android.os.AsyncTask;
-
-import com.github.mikephil.charting.data.Entry;
-import com.github.mikephil.charting.data.LineData;
-import com.github.mikephil.charting.data.LineDataSet;
+import android.widget.TextView;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -21,20 +17,18 @@ import java.net.URL;
 import java.util.ArrayList;
 
 /**
- * Created by sky on 07/03/2015.
+ * Created by sky on 14/04/2015.
  */
-public class GraphLineAsycnTask extends AsyncTask<String, Void, ArrayList<String>> {
-
-    private ArrayList<Entry> data;
+public class FormulaAsycnTask extends AsyncTask<String, Void, ArrayList<String>> {
     private Context context;
-    private ArrayList<String> xlabels;
+    private TextView text;
 
     private ProgressDialog processDialog;
 
-    public GraphLineAsycnTask(Context c){
+    public FormulaAsycnTask(Context c, TextView t){
         context = c;
-        data = new ArrayList<Entry>();
         processDialog = new ProgressDialog(context);
+        text=t;
     }
 
     @Override
@@ -58,37 +52,11 @@ public class GraphLineAsycnTask extends AsyncTask<String, Void, ArrayList<String
     @Override
     protected void onPostExecute(ArrayList<String> strings) {
         super.onPostExecute(strings);
-        data.clear();
-        int count=0;
+        String res="";
         for(String s: strings){
-            Entry entry = new Entry( Float.parseFloat(s), count);
-            data.add(entry);
-            count++;
+            res+=s;
         }
-        ArrayList<LineDataSet> sets = new ArrayList<LineDataSet>();
-        String[] sNames= context.getResources().getStringArray(R.array.sensoresNames);
-        LineDataSet ds1 = new LineDataSet(data, "Sensor "+sNames[Integer.parseInt(GraphFragment.sensor)-1]);
-        //ds1.setColor(ColorTemplate.VORDIPLOM_COLORS[0]);
-        //ds1.setCircleColor(ColorTemplate.VORDIPLOM_COLORS[0]);
-
-        GraphFragment.colorline=GraphFragment.sharedPref.getString("prefs_color", "");
-        ds1.setColor(Color.parseColor(GraphFragment.colorline));
-        ds1.setCircleColor(Color.parseColor(GraphFragment.colorline));
-        ds1.setLineWidth(2.5f);
-        ds1.setCircleSize(3f);
-        sets.add(ds1);
-        /*ArrayList<String> xlabels= new ArrayList<String>();
-        xlabels.add("Día 1");
-        xlabels.add("Día 2");
-        xlabels.add("Día 3");
-        xlabels.add("Día 4");
-        xlabels.add("Día 5");
-        xlabels.add("Día 6");
-        xlabels.add("Día 7");
-        xlabels.add("Día 8");*/
-        GraphFragment.mChart.setData(new LineData(xlabels, sets));
-        GraphFragment.parent.removeView(GraphFragment.mChart);
-        GraphFragment.parent.addView(GraphFragment.mChart);
+        text.setText(res);
         processDialog.dismiss();
     }
 
@@ -125,27 +93,22 @@ public class GraphLineAsycnTask extends AsyncTask<String, Void, ArrayList<String
         {
             connection.disconnect();
         }
-
         return responseString.toString();
     }
 
     public ArrayList<String> procesaJSON(String datos){
         ArrayList<String> objetos = new ArrayList<String>();
-        xlabels= new ArrayList<String>();
+        String[] sesnorN= context.getResources().getStringArray(R.array.sensoresNames);
         try {
-            //JSONObject ob = new JSONObject(datos);
-            //JSONObject ob2 = ob.getJSONObject("daily");
             JSONArray arreglo = new JSONArray(datos);
-            //JSONArray arreglo = ob.getJSONArray("results");
             for(int i = 0; i < arreglo.length(); i++){
                 JSONObject s = arreglo.getJSONObject(i);
-                xlabels.add(s.getString("time")+" sec");
-                objetos.add(s.getString("value"));
+                String[] spl=s.getString("sensors").split(",");
+                objetos.add("C["+sesnorN[Integer.parseInt(spl[0])-1]+","+sesnorN[Integer.parseInt(spl[1])-1]+"]: "+s.getString("value")+"\n\n");
             }
         }catch (Exception ex ){
             ex.printStackTrace();
         }
-
         return objetos;
     }
 }

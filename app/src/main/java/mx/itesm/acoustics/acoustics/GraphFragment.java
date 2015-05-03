@@ -54,7 +54,7 @@ public class GraphFragment extends Fragment {
         mChart.setStartAtZero(false);
         mChart.setGridColor(Color.BLACK);
         mChart.animateX(3000);
-        mChart.setUnit(" Hrtz");
+        mChart.setUnit(" V");
         parent = (FrameLayout) getActivity().findViewById(R.id.graphsen);
 
         String fil;

@@ -24,7 +24,7 @@
 
     <string-array name="opciones">
         <item>Graph</item>
-        <item>Data</item>
+        <item>Covariance</item>
         <item>Back</item>
     </string-array>
 

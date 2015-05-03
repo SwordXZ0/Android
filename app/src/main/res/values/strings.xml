@@ -31,7 +31,7 @@
 
     <string-array name="opciones">
         <item>Gráfica</item>
-        <item>Datos</item>
+        <item>Covarianza</item>
         <item>Regresar</item>
     </string-array>
 
@@ -50,6 +50,24 @@
         <item>12</item>
         <item>13</item>
         <item>14</item>
+    </string-array>
+
+
+    <string-array name="sensoresNames">
+        <item>1 (AF3)</item>
+        <item>2 (F7)</item>
+        <item>3 (F3)</item>
+        <item>4 (FC5)</item>
+        <item>5 (T7)</item>
+        <item>6 (P7)</item>
+        <item>7 (O1)</item>
+        <item>8 (O2)</item>
+        <item>9 (P8)</item>
+        <item>10 (T8)</item>
+        <item>11 (FC6)</item>
+        <item>12 (F4)</item>
+        <item>13 (F8)</item>
+        <item>14 (AF4)</item>
     </string-array>
 
     <string-array name="coloresvals">

@@ -42,4 +42,5 @@ public class PrefrencesActivity extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
 }

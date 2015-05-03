@@ -3,7 +3,7 @@
     <ListPreference
         android:key="prefs_sensores"
         android:title="@string/graphSensor"
-        android:entries="@array/sensores"
+        android:entries="@array/sensoresNames"
         android:entryValues="@array/sensores"
         android:defaultValue="1"/>
     <ListPreference
