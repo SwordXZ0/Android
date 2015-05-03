@@ -1,5 +1,6 @@
 package mx.itesm.acoustics.acoustics;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBarActivity;
@@ -43,4 +44,10 @@ public class PrefrencesActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public void onBackPressed() {
+        Intent i= new Intent(this, GraphActivity.class);
+        startActivity(i);
+        finish();
+    }
 }

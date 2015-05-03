@@ -93,7 +93,8 @@ public class GraphActivity extends ActionBarActivity {
                 fragment=new DetailDataFragment();
                 break;
             case 2:
-                //fragment=new GraphFragment();
+                Intent i = new Intent(this, ListActivity.class);
+                startActivity(i);
                 finish();
                 break;
         }
@@ -128,6 +129,7 @@ public class GraphActivity extends ActionBarActivity {
         if (id == R.id.action_settings) {
             Intent i = new Intent(this,PrefrencesActivity.class);
             startActivity(i);
+            finish();
             return true;
         }
 
@@ -144,5 +146,12 @@ public class GraphActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent i= new Intent(this, ListActivity.class);
+        startActivity(i);
+        finish();
     }
 }

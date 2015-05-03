@@ -4,7 +4,6 @@ package mx.itesm.acoustics.acoustics;
 import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,6 +34,7 @@ public class terapiasFragment extends Fragment {
                 tmp= parts[1].replace("\n", "").replace("\r", "");
                 Intent i = new Intent(getActivity(),GraphActivity.class).putExtra("name", tmp);
                 startActivity(i);
+                getActivity().finish();
             }
         });
 
