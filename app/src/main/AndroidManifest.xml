@@ -45,14 +45,6 @@
                 android:value="mx.itesm.acoustics.acoustics.ListActivity" />
         </activity>
         <activity
-            android:name=".RecordActivity"
-            android:label="Grabar nueva terapia"
-            android:parentActivityName=".MainMenuActivity" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="mx.itesm.acoustics.acoustics.MainMenuActivity" />
-        </activity>
-        <activity
             android:name=".PrefrencesActivity"
             android:label="@string/title_activity_prefrences"
             android:parentActivityName=".GraphActivity" >
