@@ -44,4 +44,51 @@
     <string name="title_activity_prefrences">Settings</string>
     <string name="NotifyTerapies">Modified Therapies</string>
 
+    <string-array name="sensores">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+        <item>13</item>
+        <item>14</item>
+    </string-array>
+
+    <string-array name="sensoresNames">
+        <item>1 (AF3)</item>
+        <item>2 (F7)</item>
+        <item>3 (F3)</item>
+        <item>4 (FC5)</item>
+        <item>5 (T7)</item>
+        <item>6 (P7)</item>
+        <item>7 (O1)</item>
+        <item>8 (O2)</item>
+        <item>9 (P8)</item>
+        <item>10 (T8)</item>
+        <item>11 (FC6)</item>
+        <item>12 (F4)</item>
+        <item>13 (F8)</item>
+        <item>14 (AF4)</item>
+    </string-array>
+
+    <string-array name="coloresvals">
+        <item>#ff52e829</item>
+        <item>#ff26b3ff</item>
+        <item>#ff1a11ff</item>
+        <item>#ffff2ffa</item>
+        <item>#ffffba20</item>
+        <item>#fff4ff30</item>
+        <item>#ff9c1cff</item>
+        <item>#FF6F04</item>
+        <item>#ffff1a11</item>
+        <item>#ff000000</item>
+    </string-array>
+
 </resources>
