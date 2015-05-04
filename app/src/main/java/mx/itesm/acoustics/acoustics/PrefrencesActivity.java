@@ -33,6 +33,10 @@ public class PrefrencesActivity extends ActionBarActivity {
         if (id == R.id.action_settings) {
             return true;
         }
+        if(id == android.R.id.home){
+            onBackPressed();
+            return true;
+        }
         return super.onOptionsItemSelected(item);
     }
 
